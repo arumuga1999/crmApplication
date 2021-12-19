@@ -1,0 +1,59 @@
+<div class="table-reponsive-sm fixedHeader w-100 table-scroll mt-3" style="height: 60vh;overflow: auto;">
+    <table class="table table-borderless bg-white border fixed-table m-0 floattable">
+
+        <thead>
+
+            <tr>
+                <th class="tableHeader">Actions</th>
+                <ng-container *ngFor="let header of source">
+                    <th class="tableHeader" [appSort]="data" data-order="desc"
+                        attr.data-property="{{header['fieldNm']}}" attr.data-type="{{header['type']}}" style="cursor: pointer;">
+                        {{header['label']}}
+                        <i id="icon_order" class='bx bxs-sort-alt'></i>
+                        <!-- <i  class='bx bx-minus'></i> -->
+                        <!-- <span ></span> -->
+                    </th>
+                </ng-container>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <ng-container *ngFor="let record of data;let index=index">
+                <tr>
+                    <td>
+                        <div class="btn-group">  
+                            <a class="btn view_icon p-0" title="view" type="button" (click)="navigate('view',$event)" style="margin-right:8px">
+                                <i class='bx bx-spreadsheet nav_icon'></i>
+                            </a>
+
+                            <a  class="btn view_icon p-0 " title="edit"  type="button" (click)="navigate('edit',$event)"
+                                style="margin-right:8px ;" >
+                                <i class='bx bx-edit nav_icon'></i>
+                            </a>
+
+                            <a class="btn view_icon p-0" title="delete" type="button" (click)="navigate('delete',$event)" >
+                                <i class='bx bx-trash nav_icon'></i>
+                            </a>
+
+                        </div>
+                    </td>
+                    <ng-container *ngFor="let header of source;let ind = index">
+                        <td>
+                            <span [ngClass]="{'status':(header['type'] == 'status')}" 
+
+                            [ngStyle]="{'background-color' : (header['type'] == 'status') ? (color|getColor:(record[header['fieldNm']])) : '#fff'}" >
+                                {{record[header['fieldNm']]}}
+                            </span>                            
+                        </td>
+                    </ng-container>
+                </tr>
+            </ng-container>
+
+        </tbody>
+
+    </table>
+
+</div>

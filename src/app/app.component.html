@@ -1,0 +1,13 @@
+<div class="d-flex flex-sm-column flex-column flex-xl-row flex-lg-row flex-md-row h-100"  id="sidebar-wrapper">
+    <app-side-bar class="sidebar-section"></app-side-bar>
+    <section class="section-area d-flex flex-column sidebarslide">
+        <app-header class="header-section"></app-header>
+
+        <main class="d-flex flex-column bg-light" style="height: 100vh;overflow: auto;">
+            <router-outlet></router-outlet>
+        </main>
+
+        <!-- <app-footer class="footer-section"></app-footer> -->
+
+    </section>    
+</div>

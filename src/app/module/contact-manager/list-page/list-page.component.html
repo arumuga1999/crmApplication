@@ -1,0 +1,24 @@
+<div class="container-fluid pt-3 mb-5" >
+
+    <div class="d-flex justify-content-between" >
+        <h3 class="bold">{{pageLabel}}</h3>        
+    </div>
+
+    <div class="d-flex justify-content-between mt-3 px-2 py-2 sub-head">
+        <h5 class="bold m-0">List Records</h5>
+        <div class="btn-group pull-right">
+            <a class="btn p-0 px-2 view_icon" title="card_view" type="button" routerLink="/{{urlPath}}/detail/create" (click)="navigate()">
+                <i class='bx bxs-file-plus nav_icon'></i>
+            </a>
+            <!-- <a class="btn p-0 px-2 view_icon" title="grid_view" type="button" (click)="changeType('grid')">
+                <i class='bx bx-list-ul nav_icon'></i>
+            </a> -->
+        </div>
+    </div>
+
+    <div class="row" style="overflow: auto;">    
+            <ng-container *ngIf="data?.length">
+                <app-grid [source]="source" [data]="data" [color]="color" [config]="pageConfig" (navigated)="navigateRoute($event)"></app-grid>
+            </ng-container>        
+    </div>        
+</div>

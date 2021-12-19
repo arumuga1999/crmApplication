@@ -1,0 +1,15 @@
+<header>
+    <div class="d-flex align-items-center header-section">        
+        <a tabindex="0">Home</a>
+        <i class="bx bx-chevrons-right px-2 nav_icon"></i>
+        <ng-container *ngFor="let data of header;let last=last"> 
+            <ng-container *ngIf="data.type == 'dashboard'">
+                <a class="nav_focus" id="_main_{{data.path}}" routerLink="main/{{data.path}}">{{data.label}}</a>
+            </ng-container>
+            <ng-container *ngIf="data.type != 'dashboard'">
+                <a class="nav_focus" id="_main_data_{{data.path}}" routerLink="main/data/{{data.path}}">{{data.label}}</a>
+            </ng-container>                                     
+            <i class="bx bx-chevrons-right px-2 nav_icon" *ngIf="!last"></i>
+        </ng-container>
+    </div>
+</header>

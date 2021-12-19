@@ -1,0 +1,19 @@
+<div class="p-5">
+    <div class="row">
+        <ng-container *ngFor="let link of sidebarOpt">
+            <ng-container *ngIf="link.type != 'dashboard'">
+                <div class="col-xl-3 col-sm-6 py-2" (click)="navigate('main/data/'+link.path)">
+                    <div class="card text-white h-100">
+                        <div class="card-body">
+                            <div class="rotate">
+                                <i class='bx bx-link-alt' style="font-size: 30px;"></i>
+                            </div>
+                            <h4 class="display-6">{{link.label}}</h4>
+                            <h6 class="text-uppercase">LINK</h6>                    
+                        </div>
+                    </div>
+                </div>
+            </ng-container>            
+        </ng-container>        
+    </div>
+</div>

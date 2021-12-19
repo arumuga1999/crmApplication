@@ -1,0 +1,86 @@
+
+<ng-container [formGroup]="form">
+    <div class="form-group row mb-2 mt-2">
+
+        <label  class="col-sm-6 col-form-label" *ngIf="formItem.type !== 'section' && formItem.type !== 'sectionArray'">{{formItem.label}}</label>
+
+        <div class="col-sm-6" *ngIf="!readOnly">
+            <ng-container [ngSwitch]="formItem.type">
+                <!-- Input text -->
+                <input *ngSwitchCase="'text'" type="text" class="form-control" [formControlName]="formItem.id">
+          
+          
+                <!-- Select menu -->
+                <select *ngSwitchCase="'select'" class="form-control" [formControlName]="formItem.id">
+                  <option selected [ngValue]="null">Please select</option>
+                  <option [ngValue]="menuOption.key"
+                          *ngFor="let menuOption of formItem.selectMenuOptions | keyvalue">
+                          {{ menuOption.value }}
+                  </option>
+                </select>                
+              </ng-container>
+        </div>
+        <div class="col-sm-6" *ngIf="readOnly && formItem.type !== 'section' && formItem.type !== 'sectionArray'">
+            <span>{{fieldValue}}</span>
+        </div>
+      </div>
+      <div class="form-group row px-3">
+        <ng-container *ngIf="formItem.type == 'section'">
+            <ng-container [formGroup]="myForm['controls'][formItem.id]">
+
+                <div class="d-flex mt-3 px-2 py-2 sub-head">
+                    <h5 class="bold m-0">{{formItem.label}}</h5>    
+                </div>
+
+                <div class="p-2" style="border: 2px solid;">                    
+    
+                    <ng-container *ngFor="let field of formItem.fields">
+                        <app-card [formItem]="field" [myForm]="myForm['controls'][formItem.id]" [readOnly]="readOnly"></app-card>
+                    </ng-container>   
+
+                </div>
+                         
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="formItem.type == 'sectionArray'">
+                       
+                
+                <div class="d-flex justify-content-between mt-3 px-2 py-2 sub-head">
+                    <h5 class="bold m-0">{{formItem.label}}</h5>    
+                    <a (click)="addArrayForm(myForm['controls'][formItem.id])" style="cursor: pointer;" *ngIf="!readOnly"><i class='bx bxs-add-to-queue view_icon'></i></a>
+                </div>
+
+                <div class="p-2" style="border: 2px solid;" [formArray]="myForm['controls'][formItem.id]">
+
+                        <ng-container *ngFor="let t of myForm['controls'][formItem.id]['controls']; let i = index" [formGroup]="t">
+
+                            <div class="p-2 mb-2" style="border: 2px solid;">
+                                <ng-container *ngFor="let field of formItem.fields">
+                                    <app-card [formItem]="field" [myForm]="t" [readOnly]="readOnly"></app-card>
+                                </ng-container>
+                            </div>   
+                            <div class="d-flex justify-content-end" *ngIf="!readOnly">
+                                <a class="btn p-0" title="remvoe" type="button" (click)="remove(i,myForm['controls'][formItem.id]['controls'])">
+                                    <i class='bx bx-trash'></i>
+                                </a>
+                            </div>                            
+
+                        </ng-container>
+                         <!-- <div class="p-2" style="border: 2px solid;">                    
+        
+                            <ng-container *ngFor="let field of formItem.fields">
+                                <app-card [formItem]="field"></app-card>
+                            </ng-container>   
+    
+                        </div> -->
+
+                </div>         
+            
+
+        </ng-container>
+
+      </div>
+  
+  </ng-container>
+  

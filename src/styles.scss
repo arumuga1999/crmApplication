@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 68px;
+    --first-color: #0757a8;
+    //--first-color-light: #AFA5D9;
+    --first-color-light:#a6f2ff;
+    --white-color: #F7F6FB;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100
+}
+
+* {
+    font-family: sans-serif;
+  }
+  
+  .nav_icon {
+    font-size: 1.25rem
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.view_icon{
+    color: var(--white-color) !important;
+}
+.view_icon:hover {
+    color: var(--first-color-light) !important
+}
